@@ -1,0 +1,11 @@
+dynamicconfig:
+  applicationidentifier: application-server
+  cachedir: /var/cache/dynamic-configurator-config
+  client: dynamic-configurator
+  dynamic-configurator: {namespaces: cluster-1}
+  iswatchfileenabled: 'true'
+persistence: {defaultStore: caas-default, numHistoryShards: 8192, visibilityStore: caas-visibility}
+stats:
+  exportInterval: 500ms
+  exporter:
+    m3: {env: production, hostPort: '127.0.0.1:9052', service: cluster-1}

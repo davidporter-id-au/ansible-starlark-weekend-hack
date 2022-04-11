@@ -1,0 +1,7 @@
+# Generated code. Do not edit
+- name: setup-kafka-stuffzone_1
+  debug:
+    msg: 'task ... '
+- name: setup-kafka-stuffzone_2
+  debug:
+    msg: 'task ... '

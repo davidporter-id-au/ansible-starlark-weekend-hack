@@ -1,0 +1,40 @@
+# Generated code. Do not edit
+clusters:
+  cluster-1:
+    persistence:
+      numHistoryShards: 8192
+      defaultStore: caas-default
+      visibilityStore: caas-visibility
+    stats:
+      exportInterval: 500ms
+      exporter:
+        m3:
+          env: production
+          hostPort: 127.0.0.1:9052
+          service: cluster-1
+    dynamicconfig:
+      client: dynamic-configurator
+      dynamic-configurator:
+        namespaces: cluster-1
+      applicationidentifier: application-server
+      cachedir: /var/cache/dynamic-configurator-config
+      iswatchfileenabled: "true"
+  cluster-2:
+    persistence:
+      numHistoryShards: 16384
+      defaultStore: caas-default
+      visibilityStore: caas-visibility
+    stats:
+      exportInterval: 500ms
+      exporter:
+        m3:
+          env: production
+          hostPort: 127.0.0.1:9052
+          service: cluster-2
+    dynamicconfig:
+      client: dynamic-configurator
+      dynamic-configurator:
+        namespaces: cluster-2
+      applicationidentifier: application-server
+      cachedir: /var/cache/dynamic-configurator-config
+      iswatchfileenabled: "true"

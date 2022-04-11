@@ -1,0 +1,5 @@
+- name: setup config for each cluster
+  ansible.builtin.copy:
+    dest: "example-data/{{ item.key }}.yaml"
+    content: "{{ item.value | to_yaml }}"
+  with_dict: "{{ clusters }}"
