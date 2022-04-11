@@ -1,39 +1,35 @@
 ## weekend hack - ansible with starlark preprocessing
 
-This is a quick hack to play with starlark and see how compatible it might be
-to use with ansible. This is a weekend-hack and not production code.
+This is a quick hack to play with starlark and see how compatible it might be to use with ansible. This is a weekend-hack and not production code.
 
 ### Problem
 
-Ansible is fine as a task runner, and has a fairly powerful... I don't want to
-call it 'inheritance' model, but something akin to that which allows for strong
-naming consistency in large infra projects with ease.
+Ansible is fine as a task runner, and has a fairly powerful... I don't want to call it 'inheritance' model, but something akin to that which allows for strong naming consistency in large infra projects with ease.
 
-But there always comes a time when you end up fighting yaml, which is both
-inflexible to a point and sometimes fairly insane with the complexity possible
-(particularly in ansible where you're doing preprocessing with the templating
-engine anyway)
+But there always comes a time when you end up fighting yaml, which is both inflexible to a point and sometimes fairly insane with the complexity possible
+(particularly in ansible where you're doing preprocessing with the templating engine anyway)
 
-Moreover, there's a whole bunch of extremely annoying problems with ansible's
-looping which continue to baffle-me, but are probably just legacy holdover. 
+Moreover, there's a whole bunch of extremely annoying ugliness with ansible's looping which continue to baffle me.
 
 ### Idea:
 
-Not mine, it's Mantas', though I've quite possibly bastardized it: Could we use
-starlark as a preprocessor (yes, I know ansible already has one)? If so, what
-would it look like?
+Not mine, it's Mantas', though I've quite possibly bastardized it: **Could we use starlark as (another) preprocessor**? If so, what would it look like?
 
 In practice, this means: 
 
 1. Using Starlark based config as the source of truth
-2. Generating yaml output with a questionable module system thats... kind of
-   specified in starlark (so many questionable ideas here). 
+2. Generating yaml output from starlark with pure functions
+3. Running ansible on the generated yaml as before. 
 
-   The idea being that each starlark file has an entrypoint function called `module` whose purpose
-   is to be a pure function, which just returns data. The data returned becomes
-   whatever it's ansible equivalent is. For `group_vars` it probably should
-   just be some maps of config. For tasks in the `roles` folder it might be
-   ansible blocks and tasks (with sane looping?)
+**Modules and parsing code...?**
+
+Starlark has a `load` keyword module system thats... kind of specified, but is left to the application / lanuage implementer to actually make happen. So, in order to make that work it's necessary to parse the starlark, and then provide some functionality on top of the language for things such as loading files. 
+
+So far so good, but the next questions is how to get stuff out of the starlark file, since it's a fully turing-complete language, and contains far more than just data. 
+
+Following on with the idea by the code from cirrus-ci that I was shamelessly repurposing, I came to the conclusion that it's probably best to have some kind of entrypoint into the starlark files in order to separate out the function configuration from the pure exported data. So I just made up the convention of using relying on a function called `module` in whatever starlark file's there, and using it's exports.
+
+The data returned becomes whatever it's ansible equivalent is. For `group_vars` it probably should just be some maps of config. For tasks in the `roles` folder it might be ansible blocks and tasks (with sane looping?)
 
 ### Quick-start: 
 
