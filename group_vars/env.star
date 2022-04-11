@@ -8,5 +8,4 @@ zones =[
     "zone2"
 ]
 
-# Uber Env constants
 ENVIRONMENT = "production"
