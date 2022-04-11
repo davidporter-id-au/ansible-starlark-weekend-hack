@@ -11,8 +11,8 @@ import (
 	"strings"
 
 	"github.com/certifi/gocertifi"
-	"github.com/davidporter-id-au/ansible-starlark/larker/builtin"
-	"github.com/davidporter-id-au/ansible-starlark/larker/fs"
+	"github.com/davidporter-id-au/ansible-starlark-weekend-hack/larker/builtin"
+	"github.com/davidporter-id-au/ansible-starlark-weekend-hack/larker/fs"
 	"github.com/qri-io/starlib/encoding/base64"
 	"github.com/qri-io/starlib/encoding/yaml"
 	"github.com/qri-io/starlib/hash"

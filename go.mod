@@ -1,4 +1,4 @@
-module github.com/davidporter-id-au/ansible-starlark
+module github.com/davidporter-id-au/ansible-starlark-weekend-hack
 
 go 1.18
 

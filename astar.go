@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/davidporter-id-au/ansible-starlark/larker"
+	"github.com/davidporter-id-au/ansible-starlark-weekend-hack/larker"
 )
 
 const timeout = 20 * time.Second

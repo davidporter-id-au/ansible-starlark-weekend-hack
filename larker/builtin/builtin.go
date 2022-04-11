@@ -5,7 +5,7 @@ import (
 	"errors"
 	"os"
 
-	"github.com/davidporter-id-au/ansible-starlark/larker/fs"
+	"github.com/davidporter-id-au/ansible-starlark-weekend-hack/larker/fs"
 	"go.starlark.net/starlark"
 )
 

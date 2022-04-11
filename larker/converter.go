@@ -3,7 +3,7 @@ package larker
 import (
 	"strings"
 
-	"github.com/davidporter-id-au/ansible-starlark/larker/yamlhelper"
+	"github.com/davidporter-id-au/ansible-starlark-weekend-hack/larker/yamlhelper"
 	"go.starlark.net/starlark"
 	"gopkg.in/yaml.v3"
 )
